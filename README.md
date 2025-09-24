@@ -1,2 +1,20 @@
-# MathsQuest
-mbark on an exciting educational journey with Maths Quest! Designed for UK primary school students (ages 7-11), this app makes learning maths fun and engaging. Choose from thrilling themes like 'Space Adventure', 'Dinosaur Dig', or 'Magic School' to explore UK curriculum-aligned topics from Fractions to Geometry.
+# Base44 App
+
+
+This app was created automatically by Base44.
+It's a Vite+React app that communicates with the Base44 API.
+
+## Running the app
+
+```bash
+npm install
+npm run dev
+```
+
+## Building the app
+
+```bash
+npm run build
+```
+
+For more information and support, please contact Base44 support at app@base44.com.
