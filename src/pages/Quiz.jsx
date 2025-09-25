@@ -17,7 +17,7 @@ export default function QuizPage({ currentUser, setCurrentUser }) {
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
-  const topicId = searchParams.get('topicId');
+  const topicSlug = searchParams.get('topicSlug');
   const topicName = searchParams.get('topicName');
 
   const [questions, setQuestions] = useState([]);
@@ -33,17 +33,17 @@ export default function QuizPage({ currentUser, setCurrentUser }) {
   const themeStyle = themes[theme];
 
   useEffect(() => {
-    if (!topicId || !theme) return;
+    if (!topicSlug || !theme) return;
 
     const fetchQuestions = async () => {
       setIsLoading(true);
-      const allQuestions = await Question.filter({ topic_id: topicId, theme: theme });
+      const allQuestions = await Question.filter({ topic_slug: topicSlug, theme: theme });
       setQuestions(allQuestions.sort(() => 0.5 - Math.random()).slice(0, 5)); // Get 5 random questions
       setIsLoading(false);
     };
 
     fetchQuestions();
-  }, [topicId, theme]);
+  }, [topicSlug, theme]);
 
   const handleOptionSelect = (index) => {
     if (selectedOption !== null) return;
@@ -65,7 +65,8 @@ export default function QuizPage({ currentUser, setCurrentUser }) {
     } else {
       // Quiz finished
       const progressData = currentUser.progress || {};
-      progressData[topicId] = {
+      // Assuming we'll store progress by topicSlug now as well
+      progressData[topicSlug] = {
           score: score,
           total: questions.length,
           last_attempt: new Date().toISOString()

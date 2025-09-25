@@ -4,7 +4,7 @@ import { Topic } from '@/api/entities';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
-import { X, Divide, Pentagon, Plus, Minus, HelpCircle } from 'lucide-react';
+import { X, Divide, Pentagon, Plus, Minus, HelpCircle, Ruler, Clock, PiggyBank, BarChart } from 'lucide-react';
 
 const iconMap = {
   X,
@@ -13,6 +13,10 @@ const iconMap = {
   Plus,
   Minus,
   HelpCircle,
+  Ruler,
+  Clock,
+  PiggyBank,
+  BarChart,
 };
 
 const containerVariants = {
@@ -65,7 +69,7 @@ export default function TopicMenu({ currentUser }) {
             const Icon = iconMap[topic.icon] || HelpCircle;
             return (
               <motion.div key={topic.id} variants={itemVariants}>
-                <Link to={createPageUrl(`Quiz?topicId=${topic.id}&topicName=${topic.name}`)}>
+                <Link to={createPageUrl(`Quiz?topicSlug=${topic.slug}&topicName=${encodeURIComponent(topic.name)}`)}>
                   <div className="bg-white/10 backdrop-blur-lg p-6 rounded-2xl h-full flex flex-col justify-between transform hover:-translate-y-1 transition-transform duration-300 hover:bg-white/20">
                     <div>
                       <Icon className="w-12 h-12 mb-4 text-white/80" />
